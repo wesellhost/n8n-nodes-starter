@@ -1,6 +1,6 @@
 {
     "name": "n8n-nodes-zius",
-    "version": "0.1.0",
+    "version": "0.1.2",
     "description": "use zius.uk with n8n",
     "license": "MIT",
     "homepage": "",
@@ -21,8 +21,7 @@
         "dev": "n8n-node dev",
         "lint": "n8n-node lint",
         "lint:fix": "n8n-node lint --fix",
-        "release": "n8n-node release",
-        "prepublishOnly": "n8n-node prerelease"
+        "release": "n8n-node release"
     },
     "files": [
         "dist"
@@ -39,6 +38,7 @@
     },
     "devDependencies": {
         "@n8n/node-cli": "*",
+        "@types/form-data": "^2.2.1",
         "eslint": "9.32.0",
         "prettier": "3.6.2",
         "release-it": "^19.0.4",
@@ -46,5 +46,8 @@
     },
     "peerDependencies": {
         "n8n-workflow": "*"
+    },
+    "dependencies": {
+        "form-data": "^4.0.5"
     }
 }

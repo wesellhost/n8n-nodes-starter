@@ -5,12 +5,13 @@ import {
 	INodeTypeDescription,
 	NodeApiError,
 } from 'n8n-workflow';
+import FormData from 'form-data';
 
 export class Zius implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Zius',
 		name: 'zius',
-		icon: 'fa:paper-plane', // Uses a built-in FontAwesome icon
+		icon: 'file:zius.png',
 		group: ['transform'],
 		version: 1,
 		subtitle: 'Send WhatsApp Message',
@@ -54,30 +55,29 @@ export class Zius implements INodeType {
 		const items = this.getInputData();
 		const returnData: INodeExecutionData[] = [];
 
-		// Retrieve the credentials (secret and account ID)
 		const credentials = await this.getCredentials('ziusApi');
 
 		for (let i = 0; i < items.length; i++) {
 			try {
-				// Retrieve the inputs from the n8n interface
 				const recipient = this.getNodeParameter('recipient', i) as string;
 				const message = this.getNodeParameter('message', i) as string;
 
-				// Construct the multipart/form-data POST request
+				// Build the form data exactly like your Node.js script
+				const form = new FormData();
+				form.append('secret', credentials.secret as string);
+				form.append('account', credentials.account as string);
+				form.append('recipient', recipient);
+				form.append('type', 'text');
+				form.append('message', message);
+
 				const options = {
-					method: 'POST',
+					method: 'POST' as const,
 					url: 'https://zius.uk/api/send/whatsapp',
-					formData: {
-						secret: credentials.secret,
-						account: credentials.account,
-						recipient: recipient,
-						type: 'text', // Hardcoded as per your curl request
-						message: message,
-					},
-					json: true,
+					body: form,
+					headers: form.getHeaders(),
 				};
 
-				// Execute the HTTP request
+				// Execute the request
 				const responseData = await this.helpers.httpRequest(options);
 
 				returnData.push({ json: responseData });
