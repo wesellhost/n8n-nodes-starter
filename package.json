@@ -1,6 +1,6 @@
 {
     "name": "n8n-nodes-zius",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "description": "use zius.uk with n8n",
     "license": "MIT",
     "homepage": "",
