@@ -6,7 +6,7 @@ import {
 export class ZiusApi implements ICredentialType {
 	name = 'ziusApi';
 	displayName = 'Zius API';
-	documentationUrl = 'https://zius.uk';
+	documentationUrl = 'https://zius.uk/dashboard/docs';
 	
 	properties: INodeProperties[] = [
 		{
