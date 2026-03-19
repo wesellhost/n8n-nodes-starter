@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/wesellhost/n8n-nodes-starter/refs/heads/master/img/58b29e35-13ac-4a65-84de-562dbb250a67.png" alt="Zius for n8n" width="400"/>
+  <img src="https://raw.githubusercontent.com/wesellhost/n8n-nodes-starter/refs/heads/master/img/58b29e35-13ac-4a65-84de-562dbb250a67.png" alt="Zius for n8n" width="100%"/>
   <h1>n8n-nodes-zius</h1>
   <p>The official n8n community node for the Zius WhatsApp and SMS Gateway.</p>
 
