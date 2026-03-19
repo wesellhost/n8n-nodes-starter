@@ -1,71 +1,99 @@
-![Zius for n8n](https://raw.githubusercontent.com/wesellhost/n8n-nodes-starter/refs/heads/master/img/58b29e35-13ac-4a65-84de-562dbb250a67.png)
+<div align="center">
+  <img src="https://raw.githubusercontent.com/wesellhost/n8n-nodes-starter/refs/heads/master/img/58b29e35-13ac-4a65-84de-562dbb250a67.png" alt="Zius for n8n" width="400"/>
+  <h1>n8n-nodes-zius</h1>
+  <p>The official n8n community node for the Zius WhatsApp and SMS Gateway.</p>
 
-# n8n-nodes-zius
-
-This is the official [n8n](https://n8n.io/) community node for **[Zius](https://zius.uk)**. 
-
-Seamlessly integrate your Zius WhatsApp and SMS gateway directly into your n8n workflows to automate your marketing, notifications, and bulk messaging seamlessly.
-
----
-
-## 🚀 Why Choose Zius?
-
-We guarantee your business success with our strategic features. Our platform is well-crafted to meet the demands of ever-growing marketing businesses. We ensure an easy-to-use, fluid platform that is affordable while maintaining a lag-free, quality experience.
-
-![Zius Quick Sending](https://zius.uk/templates/default/assets/images/hero-1.png)
-
-### Quick and Bulk Sending
-Send tons of messages to different contact groups easily, or send quick messages for fast transactions. Get notifications when your messages are sent or received via our live dashboard!
-* **Shortcodes:** Compose messages with predefined data.
-* **Spintax:** Randomize a set of words to battle spamming issues.
-* **Translator:** Target audiences based on their native languages.
-
-### Core Messaging Gateways
-* **WhatsApp Messaging:** Use WhatsApp for your marketing campaigns with our built-in platform tools.
-* **SMS Messaging:** Use your Android devices as an SMS gateway, which is effectively cheaper than using third-party gateways.
-* **Earn Money:** Become a partner! Use your Android devices as a gateway and earn money for every message sent.
+  [![npm version](https://img.shields.io/npm/v/n8n-nodes-zius.svg?style=flat-square)](https://www.npmjs.com/package/n8n-nodes-zius)
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+</div>
 
 ---
 
-## ⚙️ Automated and Smart Tools
+**Zius** is a comprehensive WhatsApp and SMS gateway platform that enables businesses to automate marketing, notifications, and bulk messaging through a powerful API and web dashboard. 
 
-Manage your business while we take care of the heavy lifting. Simply set up the messages you want to send, and we'll do the rest!
+This custom node seamlessly integrates your Zius account directly into your **n8n** workflows, allowing you to control Contacts, Groups, WhatsApp messaging, and Android SMS Gateways straight from your workflow canvas.
 
-![Zius Automation](https://zius.uk/templates/default/assets/images/hero-2.png)
+## 🛠️ Installation
 
-* **Schedule:** Time your SMS and WhatsApp chats for any date you want.
-* **Webhooks:** Automate tasks when you receive messages from both SMS and WhatsApp.
-* **Actions:** Create auto-responses and quick data checks for specific events.
-* **USSD:** Perform network-related requests (e.g., checking balance from your operator).
-* **Notifications:** Use connected Android devices for automated tasks.
-
----
-
-## 🔗 Important Links & Resources
-
-Everything you need to manage your Zius account and API integrations:
-
-* **Main Dashboard (Login/Register):** [zius.uk/dashboard](https://zius.uk/dashboard/)
-* **API Documentation:** [zius.uk/dashboard/docs](https://zius.uk/dashboard/docs)
-* **Get or Create API Keys:** [zius.uk/dashboard/tools/keys](https://zius.uk/dashboard/tools/keys)
-* **Manage Webhooks:** [zius.uk/dashboard/tools/webhooks](https://zius.uk/dashboard/tools/webhooks)
-* **Manage Flows:** [zius.uk/dashboard/tools/flows](https://zius.uk/dashboard/tools/flows)
-* **Add WhatsApp Device:** [zius.uk/dashboard/hosts/whatsapp](https://zius.uk/dashboard/hosts/whatsapp)
-* **Add Android Device (SMS):** [zius.uk/dashboard/hosts/android](https://zius.uk/dashboard/hosts/android)
-
----
-
-## 🛠️ Installation in n8n
-
-To install this node in your self-hosted n8n instance:
+### Option 1: Install via n8n UI (Recommended)
+You can install this node directly from your self-hosted n8n instance:
 1. Go to **Settings > Community Nodes**.
 2. Click **Install a community node**.
 3. Enter `n8n-nodes-zius` and click **Install**.
 
-## 🔐 Credentials
-To use this node, grab your **API Secret** and **WhatsApp Account Unique ID** from your [Zius Dashboard](https://zius.uk/dashboard/tools/keys). In n8n, add the Zius node to your canvas, click **Create New Credential**, and securely paste your details.
+### Option 2: Install via npm (CLI)
+If you are running a custom Docker build or managing your n8n instance via CLI, run the following command in your n8n custom nodes directory (usually `~/.n8n/custom/`):
 
-![Zius Dashboard Elements](https://zius.uk/templates/default/assets/images/mini-4.png)
+npm install n8n-nodes-zius
 
-## License
-[MIT](LICENSE.md)
+---
+
+## 🔐 Credentials Setup
+
+All API requests require authentication using an API secret key.
+
+1. Log in to your Zius Dashboard.
+2. Navigate to **Tools > API Keys** and copy your **API Secret**.
+3. *Optional:* If you are sending WhatsApp messages, find your WhatsApp Account Unique ID.
+4. *Optional:* If using the Android Gateway, find your Android Device Unique ID.
+5. In your n8n workflow, add the **Zius Full** node, click **Create New Credential**, and paste your keys into the respective fields.
+
+---
+
+## 📦 Node Operations
+
+This node supports the following operations mapped to the Zius REST API:
+
+### 🟢 WhatsApp Messaging
+* **Send Single Message:** Send a targeted WhatsApp message to a recipient. Supports text, media, or document message types.
+* **Send Bulk Messages:** Send WhatsApp messages to multiple recipients in a campaign.
+* **Start Campaign:** Start or resume a WhatsApp campaign.
+* **Stop Campaign:** Stop or pause a WhatsApp campaign.
+* **Validate Phone Number:** Check if a phone number exists on WhatsApp.
+
+### 📱 Android Gateway (SMS & USSD)
+* **Get Devices:** Retrieve all connected Android devices.
+* **Send USSD Request:** Send a USSD (Unstructured Supplementary Service Data) request to check balance, activate services, etc.
+* **Get USSD Requests:** Retrieve all USSD requests and their responses.
+* **Delete USSD Request:** Delete a specific USSD request by ID.
+* **Delete Notification:** Delete a specific Android notification by ID.
+
+### 👥 Contact Management
+* **Create Contact:** Create a new contact in your Zius account.
+* **Get All Contacts:** Retrieve all contacts with pagination support.
+* **Delete Contact:** Delete a specific contact by ID.
+* **Delete Unsubscribed Contact:** Delete an unsubscribed contact from your list.
+
+### 📁 Group Management
+* **Create Group:** Create a new contact group.
+* **Get All Groups:** Retrieve all contact groups with pagination support.
+* **Delete Group:** Delete a specific contact group by ID.
+
+---
+
+## 🛡️ Best Practices: Message Variation (Spintax)
+
+When sending bulk WhatsApp messages, identical texts trigger spam filters and risk account bans. You must randomize your messages. Use Spintax to randomize messages and avoid spam filters.
+
+**How to use Spintax in the Zius n8n Node:**
+Simply use the `{word1|word2|word3}` format directly in the "Message" field of the node.
+
+> `{Hello|Hi|Greetings|Hey} {John|there}, we have a {special|great|exclusive} offer for you today!`
+
+Other best practices for bulk messaging include:
+* Group contacts logically for targeted campaigns.
+* Test messages with small groups before full campaigns.
+* Monitor campaign performance in real-time.
+
+---
+
+## 🔗 Resources
+
+* **Zius Official Website:** https://zius.uk
+* **Zius API Documentation:** https://zius.uk/dashboard/docs
+* **API Keys:** https://zius.uk/dashboard/tools/keys
+* **Manage Webhooks:** https://zius.uk/dashboard/tools/webhooks
+* **Manage Flows:** https://zius.uk/dashboard/tools/flows
+
+## 📄 License
+This project is licensed under the MIT License.
